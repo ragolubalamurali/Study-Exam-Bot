@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Study-Bot</title>
+    <meta name="description" content="Your AI-powered study companion for exam preparation">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body> <!-- Mode Selector Screen -->
+    <div id="mode-selector" class="screen active">
+        <class class="container"> <!-- Header -->
+            <header class="header">
+                <div class="logo">
+                    <div class="logo-icon"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" fill="currentColor" />
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" fill="currentColor" />
+                        </svg> </div>
+                    <h1>Study Bot</h1>
+                </div>
+                <p class="subtitle">Your AI-powered study companion for exam preparation. Choose your learning mode to
+                    get started.</p>
+            </header> <!-- Mode Cards -->
+            <div class="modes-grid">
+                <div class="mode-card study-mode" data-mode="study">
+                    <div class="mode-icon"> <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg> </div>
+                    <h3>Quick Revision</h3>
+                    <p>Get a summary of any topic with key points for fast revision.</p> <button
+                        class="mode-btn study-btn" onclick="window.location.href='/chatbot?mode=revision'"> Start
+                        Revision <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg> </button>
+                </div>
+                <div class="mode-card practice-mode" data-mode="practice">
+                    <div class="mode-icon"> <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path
+                                d="M9.5 3A6.5 6.5 0 0 0 3 9.5c0 1 .23 1.94.65 2.78L12 21l8.35-8.72A6.5 6.5 0 0 0 9.5 3Z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M12 13.5a3.5 3.5 0 1 1-7 0 3.5 3.5 0 0 1 7 0Z" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg> </div>
+                    <h3>Practice Mode</h3>
+                    <p>Test your knowledge with interactive questions and exercises</p> <button
+                        class="mode-btn practice-btn" onclick="window.location.href='/chatbot?mode=quiz'"> Start
+                        Quiz <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg> </button>
+                </div>
+                <div class="mode-card review-mode" data-mode="review">
+                    <div class="mode-icon"> <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9Z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                        </svg> </div>
+                    <h3>Doubt Solving</h3>
+                    <p>Ask your doubts and get clear, step-by-step explanations.</p> <button class="mode-btn review-btn"
+                        onclick="window.location.href='/chatbot?mode=doubt'"> Start
+                        Solve Doubts <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg> </button>
+                </div>
+            </div> <!-- Features -->
+            <div class="features">
+                <div class="feature">
+                    <div class="feature-dot"></div> Rapid Recap
+                </div>
+                <div class="feature">
+                    <div class="feature-dot"></div> Warm-Up Challenge
+                </div>
+                <div class="feature">
+                    <div class="feature-dot"></div> Clear Queries
+                </div>
+            </div>
+        </class>
+        <!-- Disclaimer -->
+        <div class="disclaimer" id="index-disclaimer">
+            ⚠️ Note: This chatbot only answers questions related to studies, exams, syllabus, and learning.
+            Please avoid unrelated queries.
+            <button class="disclaimer-close"
+                onclick="document.getElementById('index-disclaimer').style.display='none'">✖</button>
+        </div>
+    </div>
+    </div> <!-- Chat Interface Screen -->
+    <div id="chat-interface" class="screen">
+        <div class="chat-container"> <!-- Chat Header -->
+            <header class="chat-header"> <button class="back-btn" id="back-btn"> <svg width="16" height="16"
+                        viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M19 12H5M12 19l-7-7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg> Back </button>
+                <div class="chat-logo"> <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" fill="currentColor" />
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" fill="currentColor" />
+                    </svg> QuizMaster Pro </div>
+                <div class="mode-badge" id="mode-badge"> <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                        <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" />
+                    </svg> <span id="mode-text">Study</span> </div>
+            </header> <!-- Messages Container -->
+            <div class="messages-container" id="messages-container">
+                <div class="message bot-message">
+                    <div class="message-content">
+                        <p>Hi! You're in <strong>Study</strong> mode. Ask me anything about your studies and I'll help
+                            you prepare for your exams!</p>
+                    </div>
+                </div>
+            </div> <!-- Chat Input -->
+            <div class="chat-input-container">
+                <div class="chat-input"> <textarea id="message-input"
+                        placeholder="Ask me anything about your studies..." rows="1"></textarea> <button id="send-btn"
+                        class="send-btn" disabled> <svg width="20" height="20" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7Z" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg> </button> </div>
+            </div>
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>
