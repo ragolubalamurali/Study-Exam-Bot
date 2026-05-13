@@ -89,7 +89,8 @@ body {
     text-align: center;
     border: 1px solid hsl(48, 80%, 75%);
     border-radius: 10px;
-    margin: 40px auto 20px auto;  
+    margin: 40px auto 20px auto;
+    width: calc(100% - 32px);
     max-width: 850px;
     position: relative;
     line-height: 1.6;
@@ -153,12 +154,12 @@ body {
     box-shadow: 0 10px 25px -5px hsl(240, 6%, 10%, 0.1);
 }
 
-.study-mode {
+.quiz-mode {
     background: hsl(214, 100%, 97%);
     border-color: hsl(214, 80%, 85%);
 }
 
-.study-mode:hover {
+.quiz-mode:hover {
     background: hsl(214, 100%, 95%);
     border-color: hsl(214, 80%, 75%);
 }
@@ -173,12 +174,12 @@ body {
     border-color: hsl(142, 76%, 75%);
 }
 
-.review-mode {
+.doubt-mode {
     background: hsl(262, 100%, 97%);
     border-color: hsl(262, 85%, 85%);
 }
 
-.review-mode:hover {
+.doubt-mode:hover {
     background: hsl(262, 100%, 95%);
     border-color: hsl(262, 85%, 75%);
 }
@@ -200,7 +201,7 @@ body {
     box-shadow: 0 10px 15px -3px hsl(240, 6%, 10%, 0.1);
 }
 
-.study-mode .mode-icon {
+.quiz-mode .mode-icon {
     color: hsl(214, 100%, 50%);
 }
 
@@ -208,7 +209,7 @@ body {
     color: hsl(142, 76%, 36%);
 }
 
-.review-mode .mode-icon {
+.doubt-mode .mode-icon {
     color: hsl(262, 100%, 50%);
 }
 
@@ -242,11 +243,11 @@ body {
     font-size: 0.875rem;
 }
 
-.study-btn {
+.quiz-btn {
     background: linear-gradient(to right, hsl(214, 100%, 50%), hsl(214, 100%, 60%));
 }
 
-.study-btn:hover {
+.quiz-btn:hover {
     opacity: 0.9;
     box-shadow: 0 4px 12px hsl(214, 100%, 50%, 0.4);
 }
@@ -260,11 +261,11 @@ body {
     box-shadow: 0 4px 12px hsl(142, 76%, 36%, 0.4);
 }
 
-.review-btn {
+.doubt-btn {
     background: linear-gradient(to right, hsl(262, 100%, 50%), hsl(262, 100%, 60%));
 }
 
-.review-btn:hover {
+.doubt-btn:hover {
     opacity: 0.9;
     box-shadow: 0 4px 12px hsl(262, 100%, 50%, 0.4);
 }
@@ -309,6 +310,7 @@ body {
 
 .chat-container {
     height: 100vh;
+    height: 100dvh;
     display: flex;
     flex-direction: column;
     max-width: 1024px;
@@ -327,6 +329,16 @@ body {
     backdrop-filter: blur(8px);
     border-bottom: 1px solid hsl(240, 6%, 90%);
     box-shadow: 0 1px 2px 0 hsl(240, 6%, 10%, 0.05);
+}
+
+/* AI status banner */
+.ai-banner {
+    background: #fff3cd;
+    color: #664d03;
+    padding: 8px 12px;
+    border-radius: 6px;
+    margin: 12px;
+    font-size: 14px;
 }
 
 .back-btn {
@@ -366,7 +378,7 @@ body {
     border: 1px solid;
 }
 
-.mode-badge.study {
+.mode-badge.quiz {
     background: hsl(214, 100%, 95%);
     color: hsl(214, 100%, 40%);
     border-color: hsl(214, 80%, 85%);
@@ -378,7 +390,7 @@ body {
     border-color: hsl(142, 76%, 80%);
 }
 
-.mode-badge.review {
+.mode-badge.doubt {
     background: hsl(262, 100%, 95%);
     color: hsl(262, 100%, 40%);
     border-color: hsl(262, 85%, 80%);
@@ -389,7 +401,6 @@ body {
     flex: 1;
     padding: 10px;
     overflow-y: auto;
-    height: calc(100vh - 160px); /* keeps constant chat area */
     border-top: 1px solid #ddd;
     background: hsl(248, 50%, 98%);
     scroll-behavior: smooth;
@@ -577,7 +588,10 @@ body {
 }
 
 @keyframes typing {
-    0%, 60%, 100% {
+
+    0%,
+    60%,
+    100% {
         transform: translateY(0);
         opacity: 0.4;
     }
@@ -622,12 +636,18 @@ body {
     .message-content {
         max-width: 90%;
     }
+
+    .disclaimer {
+        margin: 24px auto 16px auto;
+    }
 }
 
 @media (max-width: 480px) {
     .features {
-        grid-template-columns: 1fr;
-        text-align: center;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 12px;
     }
 
     .chat-header {

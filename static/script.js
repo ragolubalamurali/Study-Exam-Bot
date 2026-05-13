@@ -1,12 +1,14 @@
 class QuizMasterPro {
     constructor() {
-        this.currentMode = 'study';
+        const urlParams = new URLSearchParams(window.location.search);
+        this.currentMode = urlParams.get('mode') || 'quiz';
 
         // 🔹 Store separate messages per mode
         this.modeMessages = {
-            study: [],
+            revision: [],
             practice: [],
-            review: []
+            quiz: [],
+            doubt: []
         };
 
         this.isTyping = false;
@@ -18,7 +20,6 @@ class QuizMasterPro {
     init() {
         this.bindEvents();
         this.autoResizeTextarea();
-        this.showModeSelector();
     }
 
     bindEvents() {
@@ -29,8 +30,8 @@ class QuizMasterPro {
             });
         });
 
-        document.getElementById('back-btn').addEventListener('click', () => {
-            this.showModeSelector();
+        document.getElementById('back-btn')?.addEventListener('click', () => {
+            window.location.href = '/';
         });
 
         document.getElementById('send-btn').addEventListener('click', () => {
@@ -54,14 +55,14 @@ class QuizMasterPro {
         this.currentMode = mode;
         this.updateModeDisplay();
         this.initializeChat();  // load history
-        this.showChatInterface();
     }
 
     updateModeDisplay() {
         const modeBadge = document.getElementById('mode-badge');
         const modeText = document.getElementById('mode-text');
 
-        modeBadge.classList.remove('study', 'practice', 'review');
+        if (!modeBadge) return;
+        modeBadge.className = 'mode-badge';
         modeBadge.classList.add(this.currentMode);
 
         modeText.textContent = this.currentMode.charAt(0).toUpperCase() + this.currentMode.slice(1);
@@ -72,13 +73,15 @@ class QuizMasterPro {
         messagesContainer.innerHTML = "";
 
         // 🔹 Load stored messages for selected mode
-        this.modeMessages[this.currentMode].forEach(msg => {
-            this.renderMessage(msg);
-        });
+        if (this.modeMessages[this.currentMode]) {
+            this.modeMessages[this.currentMode].forEach(msg => {
+                this.renderMessage(msg);
+            });
 
-        if (this.modeMessages[this.currentMode].length === 0) {
-            const welcomeMessage = `Hi! You're in <strong>${this.currentMode.charAt(0).toUpperCase() + this.currentMode.slice(1)}</strong> mode. Ask me anything about your studies and I'll help you prepare for your exams!`;
-            this.addMessage(welcomeMessage, 'bot');
+            if (this.modeMessages[this.currentMode].length === 0) {
+                const welcomeMessage = `Hi! You're in <strong>${this.currentMode.charAt(0).toUpperCase() + this.currentMode.slice(1)}</strong> mode. Ask me anything about your studies and I'll help you prepare for your exams!`;
+                this.addMessage(welcomeMessage, 'bot');
+            }
         }
     }
 
@@ -91,7 +94,9 @@ class QuizMasterPro {
         };
 
         // 🔹 Save message only to current mode
-        this.modeMessages[this.currentMode].push(message);
+        if (this.modeMessages[this.currentMode]) {
+            this.modeMessages[this.currentMode].push(message);
+        }
 
         this.renderMessage(message);
         this.scrollToBottom();

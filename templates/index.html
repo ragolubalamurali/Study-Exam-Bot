@@ -11,7 +11,7 @@
 
 <body> <!-- Mode Selector Screen -->
     <div id="mode-selector" class="screen active">
-        <class class="container"> <!-- Header -->
+        <div class="container"> <!-- Header -->
             <header class="header">
                 <div class="logo">
                     <div class="logo-icon"> <svg width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -25,23 +25,6 @@
                     get started.</p>
             </header> <!-- Mode Cards -->
             <div class="modes-grid">
-                <div class="mode-card study-mode" data-mode="study">
-                    <div class="mode-icon"> <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                            <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg> </div>
-                    <h3>Quick Revision</h3>
-                    <p>Get a summary of any topic with key points for fast revision.</p> <button
-                        class="mode-btn study-btn" onclick="window.location.href='/chatbot?mode=revision'"> Start
-                        Revision <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
-                            xmlns="http://www.w3.org/2000/svg">
-                            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2"
-                                stroke-linecap="round" stroke-linejoin="round" />
-                        </svg> </button>
-                </div>
                 <div class="mode-card practice-mode" data-mode="practice">
                     <div class="mode-icon"> <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -52,22 +35,39 @@
                                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg> </div>
                     <h3>Practice Mode</h3>
-                    <p>Test your knowledge with interactive questions and exercises</p> <button
-                        class="mode-btn practice-btn" onclick="window.location.href='/chatbot?mode=quiz'"> Start
+                    <p>Get study questions and exercises on any topic you want to practice.</p> <button
+                        class="mode-btn practice-btn" onclick="window.location.href='/chatbot?mode=practice'"> Start
+                        Practice <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round" />
+                        </svg> </button>
+                </div>
+                <div class="mode-card quiz-mode" data-mode="quiz">
+                    <div class="mode-icon"> <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
+                            xmlns="http://www.w3.org/2000/svg">
+                            <path d="M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z"
+                                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                            <path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" />
+                        </svg> </div>
+                    <h3>Quiz Mode</h3>
+                    <p>Test your knowledge with interactive multiple-choice questions.</p> <button
+                        class="mode-btn quiz-btn" onclick="window.location.href='/chatbot?mode=quiz'"> Start
                         Quiz <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path d="M5 12h14M12 5l7 7-7 7" stroke="currentColor" stroke-width="2"
                                 stroke-linecap="round" stroke-linejoin="round" />
                         </svg> </button>
                 </div>
-                <div class="mode-card review-mode" data-mode="review">
+                <div class="mode-card doubt-mode" data-mode="doubt">
                     <div class="mode-icon"> <svg width="32" height="32" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
                             <path d="M9 12l2 2 4-4M21 12c0 4.97-4.03 9-9 9s-9-4.03-9-9 4.03-9 9-9 9 4.03 9 9Z"
                                 stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
                         </svg> </div>
                     <h3>Doubt Solving</h3>
-                    <p>Ask your doubts and get clear, step-by-step explanations.</p> <button class="mode-btn review-btn"
+                    <p>Ask your doubts and get clear, step-by-step explanations.</p> <button class="mode-btn doubt-btn"
                         onclick="window.location.href='/chatbot?mode=doubt'"> Start
                         Solve Doubts <svg width="16" height="16" viewBox="0 0 24 24" fill="none"
                             xmlns="http://www.w3.org/2000/svg">
@@ -78,16 +78,16 @@
             </div> <!-- Features -->
             <div class="features">
                 <div class="feature">
-                    <div class="feature-dot"></div> Rapid Recap
+                    <div class="feature-dot"></div> Practice Sessions
                 </div>
                 <div class="feature">
-                    <div class="feature-dot"></div> Warm-Up Challenge
+                    <div class="feature-dot"></div> Interactive Quizzes
                 </div>
                 <div class="feature">
                     <div class="feature-dot"></div> Clear Queries
                 </div>
             </div>
-        </class>
+        </div>
         <!-- Disclaimer -->
         <div class="disclaimer" id="index-disclaimer">
             ⚠️ Note: This chatbot only answers questions related to studies, exams, syllabus, and learning.

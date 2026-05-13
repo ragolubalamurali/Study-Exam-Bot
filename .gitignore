@@ -19,3 +19,5 @@ Thumbs.db
 
 # Ignore environment variables
 .env
+.venv311/
+.venv311/
